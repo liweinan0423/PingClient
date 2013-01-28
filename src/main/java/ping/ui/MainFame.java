@@ -6,7 +6,6 @@ import ping.ui.statusbar.StatusBar;
 import ping.ui.toolbar.PToolBar;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 
 public class MainFame extends JFrame {
