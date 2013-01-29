@@ -1,14 +1,12 @@
 package ping.core;
 
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Ping {
 
-    private static final Log logger = LogFactory.getLog(Ping.class);
+    private static final Logger logger = Logger.getLogger("Ping");
     public static final String OS_NAME_PROPERTY = "os.name";
 
     public boolean isReachable(String server) {
@@ -21,10 +19,10 @@ public class Ping {
             int result = process.waitFor();
             return result == 0;
         } catch (IOException e) {
-            logger.debug("", e);
+            logger.log(Level.WARNING, e.getMessage(), e);
             return false;
         } catch (InterruptedException e) {
-            logger.debug("", e);
+            logger.log(Level.WARNING, e.getMessage(), e);
             return false;
         }
     }

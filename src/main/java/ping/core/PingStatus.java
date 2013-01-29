@@ -54,4 +54,9 @@ public class PingStatus {
     public Server getServer() {
         return server;
     }
+
+    @Override
+    public String toString() {
+        return "success: " + successNum + ", failure: " + faildedNum + ", latency: " + averageLatency;
+    }
 }
