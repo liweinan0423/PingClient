@@ -2,15 +2,21 @@ package ping.core;
 
 public class Server {
 
+    public static final int NORMAL = 1;
+    public static final int EXCEPTION = 2;
+    public static final int UNKNOWN = 3;
+
     private String id;
 
     private String name;
 
     private String address;
 
-    private PingStatus status;
+    private int status;
 
     private PingWorker worker = new PingWorker(this);
+
+    private int latency;
 
     public PingWorker getWorker() {
         return worker;
@@ -41,33 +47,39 @@ public class Server {
         this.address = address;
     }
 
-    public PingStatus getStatus() {
+    public int getLatency() {
+        return latency;
+    }
+
+    public int getStatus() {
         return status;
     }
-
-    public void updateStatus(PingResult result) {
-        if (status == null) {
-            status = new PingStatus(this);
-        }
-
-        if (result.isSuccess()) {
-
-            status.setStatus(PingStatus.NORMAL);
-
-            status.setSuccessNum(status.getSuccessNum() + 1);
-
-            status.setAverageLatency((status.getAverageLatency() * (status.getSuccessNum() - 1) + result.getLatency()) / status.getSuccessNum());
-
-
-        } else {
-            status.setStatus(PingStatus.EXCEPTION);
-            status.setFaildedNum(status.getFaildedNum() + 1);
-        }
-    }
+//
+//    public void updateStatus(PingResult result) {
+//        if (status == null) {
+//            status = new PingStatus(this);
+//        }
+//
+//        if (result.isSuccess()) {
+//
+//            status.setStatus(PingStatus.NORMAL);
+//
+//            status.setSuccessNum(status.getSuccessNum() + 1);
+//
+//            status.setAverageLatency((status.getAverageLatency() * (status.getSuccessNum() - 1) + result.getLatency()) / status.getSuccessNum());
+//
+//
+//        } else {
+//            status.setStatus(PingStatus.EXCEPTION);
+//            status.setFaildedNum(status.getFaildedNum() + 1);
+//        }
+//
+//        System.out.println(this);
+//    }
 
     @Override
     public String toString() {
-        return name + "[" + address + "]: " + this.status.toString();
+        return name + "[" + address + "]: " + latency + "ms";
     }
 
     @Override
@@ -85,5 +97,13 @@ public class Server {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    public void setLatency(int latency) {
+        this.latency = latency;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

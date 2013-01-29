@@ -100,6 +100,12 @@ public class ServerRepository {
         server.setName(element.getAttribute("name"));
         server.setAddress(element.getAttribute("address"));
 
+        String latency = element.getAttribute("latency");
+        server.setLatency((latency == null || "".equals(latency)) ? -1 : Integer.valueOf(latency));
+
+        String status = element.getAttribute("status");
+        server.setStatus(Integer.valueOf((status == null || "".equals(status)) ? Server.UNKNOWN : Integer.valueOf(status)));
+
         return server;
     }
 
@@ -121,6 +127,8 @@ public class ServerRepository {
             element.setAttribute("id", server.getId());
             element.setAttribute("name", server.getName());
             element.setAttribute("address", server.getAddress());
+            element.setAttribute("latency", String.valueOf(server.getLatency()));
+            element.setAttribute("status", String.valueOf(server.getStatus()));
             root.appendChild(element);
 
             writeDocument(document);
@@ -199,6 +207,8 @@ public class ServerRepository {
                 if (element.getAttribute("id").equals(server.getId())) {
                     element.setAttribute("name", server.getName());
                     element.setAttribute("address", server.getAddress());
+                    element.setAttribute("latency", String.valueOf(server.getLatency()));
+                    element.setAttribute("status", String.valueOf(server.getStatus()));
                 }
             }
 

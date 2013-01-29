@@ -3,6 +3,7 @@ package ping.test;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ping.core.AppFacade;
 import ping.core.DuplicateServerDefinitionException;
 import ping.core.Server;
 import ping.core.ServerRepository;
@@ -110,4 +111,26 @@ public class AppTest {
 
     }
 
+    @Test
+    public void test_ping_servers() throws DuplicateServerDefinitionException {
+
+        repository.saveServer(server1);
+        repository.saveServer(server2);
+
+        AppFacade app = new AppFacade(repository);
+
+        app.start();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ServerRepository repository = new ServerRepository(System.getProperty("user.home") + "/servers.xml");
+
+        AppFacade app = new AppFacade(repository);
+
+        app.start();
+
+        Thread.sleep(20000L);
+
+        app.stop();
+    }
 }

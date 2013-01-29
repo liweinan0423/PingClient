@@ -20,7 +20,7 @@ public class PingWorker implements Runnable {
         this.server = server;
     }
 
-
+    @Override
     public void run() {
         synchronized (server) {
 
@@ -30,7 +30,7 @@ public class PingWorker implements Runnable {
                 boolean reachable = ping.isReachable(server.getAddress());
                 long end = System.currentTimeMillis();
                 PingResult pingResult = new PingResult(server, reachable, (int) (end - start), new Date());
-                server.updateStatus(pingResult);
+//                server.updateStatus(pingResult);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
