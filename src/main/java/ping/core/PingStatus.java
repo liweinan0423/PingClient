@@ -2,6 +2,9 @@ package ping.core;
 
 public class PingStatus {
 
+    public static final int NORMAL = 1;
+    public static final int EXCEPTION = 2;
+
     private Server server;
 
     private int successNum;

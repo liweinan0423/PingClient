@@ -1,6 +1,5 @@
 package ping.core;
 
-
 public class Server {
 
     private String name;
@@ -8,6 +7,12 @@ public class Server {
     private String address;
 
     private PingStatus status;
+
+    private PingWorker worker = new PingWorker();
+
+    public PingWorker getWorker() {
+        return worker;
+    }
 
     public String getName() {
         return name;
@@ -27,5 +32,25 @@ public class Server {
 
     public PingStatus getStatus() {
         return status;
+    }
+
+    public void updateStatus(PingResult result) {
+        if (status == null) {
+            status = new PingStatus(this);
+        }
+
+        if (result.isSuccess()) {
+
+            status.setStatus(PingStatus.NORMAL);
+
+            status.setSuccessNum(status.getSuccessNum() + 1);
+
+            status.setAverageLatency((status.getAverageLatency() * (status.getSuccessNum() - 1) + result.getLatency()) / status.getSuccessNum());
+
+
+        } else {
+            status.setStatus(PingStatus.EXCEPTION);
+            status.setFaildedNum(status.getFaildedNum() + 1);
+        }
     }
 }

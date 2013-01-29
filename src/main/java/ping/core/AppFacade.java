@@ -11,16 +11,24 @@ public class AppFacade {
         this.serverRepository = serverRepository;
     }
 
-    List<Server> findAllServers() {
+    public List<Server> findAllServers() {
         return serverRepository.findAllServers();
     }
 
     public void start() {
         List<Server> allServers = findAllServers();
 
-
-
-
+        for (Server server : allServers) {
+            server.getWorker().setStarted(true);
+            new Thread(server.getWorker()).start();
+        }
     }
 
+    public void stop() {
+        List<Server> allServers = findAllServers();
+
+        for (Server server : allServers) {
+            server.getWorker().setStarted(false);
+        }
+    }
 }

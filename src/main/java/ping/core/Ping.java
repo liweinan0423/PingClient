@@ -1,7 +1,6 @@
 package ping.core;
 
 
-import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
