@@ -4,9 +4,7 @@ import ping.core.ServerRepository;
 import ping.ui.menu.PMenuBar;
 import ping.ui.statusbar.StatusBar;
 import ping.ui.table.ServerTable;
-import ping.ui.toolbar.AddButtonListener;
-import ping.ui.toolbar.PToolBar;
-import ping.ui.toolbar.RemoveButtonListener;
+import ping.ui.toolbar.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +29,8 @@ public class AppController {
         toolBar = new PToolBar();
         toolBar.getAddButton().addActionListener(new AddButtonListener(this));
         toolBar.getRemoveButton().addActionListener(new RemoveButtonListener(this));
+        toolBar.getStartPingBtn().addActionListener(new PingButtonListener(this));
+        toolBar.getPrintButton().addActionListener(new PrintButtonListener(this));
 
         serverTable = new ServerTable(serverRepository);
         statusBar = new StatusBar();

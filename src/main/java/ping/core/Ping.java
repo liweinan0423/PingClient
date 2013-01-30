@@ -9,13 +9,13 @@ public class Ping {
     private static final Logger logger = Logger.getLogger("Ping");
     public static final String OS_NAME_PROPERTY = "os.name";
 
-    public boolean isReachable(String server) {
+    public boolean isReachable(String address) {
         Runtime runtime = Runtime.getRuntime();
-        if (server == null) {
+        if (address == null) {
             throw new IllegalArgumentException("Server address cannot be null");
         }
         try {
-            Process process = execByOS(server, runtime);
+            Process process = execByOS(address, runtime);
             int result = process.waitFor();
             return result == 0;
         } catch (IOException e) {

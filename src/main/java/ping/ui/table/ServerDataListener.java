@@ -18,7 +18,7 @@ public class ServerDataListener implements DataChangeEventListener {
 
     @Override
     public void onServerCreate(Server server) {
-        tableModel.addRow(ServerTable.getServerDataVector(server));
+        tableModel.addRow(ServerTableModel.getServerDataVector(server));
     }
 
     @Override

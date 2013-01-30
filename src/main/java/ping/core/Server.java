@@ -3,8 +3,15 @@ package ping.core;
 public class Server {
 
     public static final int NORMAL = 1;
+    public static final String NORMAL_TEXT = "正常";
+
     public static final int EXCEPTION = 2;
+    public static final String EXCEPTION_TEXT = "异常";
+
     public static final int UNKNOWN = 3;
+    public static final String UNKOWN_TEXT = "未知";
+
+    public static final int NO_LATENCY = -1;
 
     private String id;
 
