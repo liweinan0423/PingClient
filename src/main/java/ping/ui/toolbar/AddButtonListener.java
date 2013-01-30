@@ -30,6 +30,7 @@ public class AddButtonListener implements ActionListener {
         dialog.setBounds(dialog.getParent().getWidth() / 4, dialog.getParent().getHeight() / 2, 0, 0);
 
         JButton okButton = new JButton("确定");
+
         okButton.setAction(new CreateServerAction(panel, app, dialog));
 
         dialog.add(okButton);
