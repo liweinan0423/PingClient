@@ -62,7 +62,7 @@ public class ServerRepository {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                logger.log(Level.WARNING, "Cannot create data file", e);
+                logger.log(Level.SEVERE, "Cannot create data file", e);
                 throw new RuntimeException(e);
             }
 
@@ -76,7 +76,7 @@ public class ServerRepository {
 
                 writeDocument(document);
             } catch (Exception e) {
-                logger.log(Level.WARNING, e.getMessage(), e);
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }

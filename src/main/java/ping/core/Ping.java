@@ -25,10 +25,10 @@ public class Ping {
             int result = process.waitFor();
             return result == 0;
         } catch (IOException e) {
-            logger.log(Level.WARNING, e.getMessage(), e);
+            logger.log(Level.SEVERE, e.getMessage(), e);
             return false;
         } catch (InterruptedException e) {
-            logger.log(Level.WARNING, e.getMessage(), e);
+            logger.log(Level.SEVERE, e.getMessage(), e);
             return false;
         }
     }

@@ -26,13 +26,15 @@ public class PrintButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         try {
 
-
             app.getServerTable().print();
-            System.out.println(Thread.currentThread().getName());
-        } catch (PrinterException e) {
-            System.out.println("ERROR");
-            logger.log(Level.WARNING, "打印机配置错误", e);
-            JOptionPane.showMessageDialog(app.getFrame(), "没有设置打印机或者打印机设置错误", "错误", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            if (e.getCause() instanceof PrinterException) {
+                logger.log(Level.SEVERE, "打印机配置错误", e);
+                JOptionPane.showMessageDialog(app.getFrame(), "没有设置打印机或者打印机设置错误", "错误", JOptionPane.ERROR_MESSAGE);
+            } else {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

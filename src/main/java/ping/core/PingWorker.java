@@ -34,7 +34,7 @@ public class PingWorker implements Runnable {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    logger.log(Level.WARNING, "",  e);
+                    logger.log(Level.SEVERE, "",  e);
                 }
             }
         }
