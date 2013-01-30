@@ -1,4 +1,4 @@
-package ping.ui.toolbar;
+package ping.actions;
 
 import ping.core.Ping;
 import ping.core.Server;

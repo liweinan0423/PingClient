@@ -1,5 +1,9 @@
 package ping.ui;
 
+import ping.actions.AddAction;
+import ping.actions.PingAction;
+import ping.actions.PrintAction;
+import ping.actions.RemoveAction;
 import ping.core.ServerRepository;
 import ping.ui.menu.PMenuBar;
 import ping.ui.statusbar.StatusBar;
@@ -27,10 +31,10 @@ public class AppController {
         menuBar = new PMenuBar();
 
         toolBar = new PToolBar();
-        toolBar.getAddButton().addActionListener(new AddButtonListener(this));
-        toolBar.getRemoveButton().addActionListener(new RemoveButtonListener(this));
-        toolBar.getStartPingBtn().addActionListener(new PingButtonListener(this));
-        toolBar.getPrintButton().addActionListener(new PrintButtonListener(this));
+        toolBar.getAddButton().addActionListener(new AddAction(this));
+        toolBar.getRemoveButton().addActionListener(new RemoveAction(this));
+        toolBar.getStartPingBtn().addActionListener(new PingAction(this));
+        toolBar.getPrintButton().addActionListener(new PrintAction(this));
 
         serverTable = new ServerTable(serverRepository);
         statusBar = new StatusBar();

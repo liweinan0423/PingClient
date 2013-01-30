@@ -1,4 +1,4 @@
-package ping.ui.toolbar;
+package ping.actions;
 
 import ping.core.Server;
 import ping.ui.AppController;
@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class PingButtonListener implements ActionListener {
+public class PingAction implements ActionListener {
 
     private AppController app;
 
-    public PingButtonListener(AppController app) {
+    public PingAction(AppController app) {
 
         this.app = app;
     }

@@ -1,4 +1,4 @@
-package ping.ui.toolbar;
+package ping.actions;
 
 import ping.ui.AppController;
 
@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RemoveButtonListener implements ActionListener {
+public class RemoveAction implements ActionListener {
 
     private final AppController app;
 
-    public RemoveButtonListener(AppController app) {
+    public RemoveAction(AppController app) {
         this.app = app;
     }
 
