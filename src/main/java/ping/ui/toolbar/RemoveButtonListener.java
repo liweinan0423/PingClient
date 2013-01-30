@@ -26,12 +26,13 @@ public class RemoveButtonListener implements ActionListener {
 
         if (JOptionPane.YES_OPTION ==  JOptionPane.showConfirmDialog(app.getFrame(), "是否确定删除所选的服务器?")) {
 
-            int[] selectedColumns = app.getServerTable().getSelectedColumns();
+            int[] selectedRows = app.getServerTable().getSelectedRows();
 
-            String[] serverIds = new String[selectedColumns.length];
 
-            for (int i = 0; i < selectedColumns.length; i++) {
-                String serverId = app.getServerTable().getModel().getValueAt(i, 0).toString();
+            String[] serverIds = new String[selectedRows.length];
+
+            for (int i = 0; i < selectedRows.length; i++) {
+                String serverId = app.getServerTable().getModel().getValueAt(selectedRows[i], 0).toString();
                 serverIds[i] = serverId;
             }
 
