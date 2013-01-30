@@ -9,8 +9,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PrintButtonListener implements ActionListener {
+
+    private Logger logger = Logger.getLogger("PrintButtonListener");
 
     private AppController app;
 
@@ -22,18 +26,13 @@ public class PrintButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         try {
 
-            PrintService service = PrintServiceLookup.lookupDefaultPrintService();
 
-            app.getServerTable().print(/*
-                    JTable.PrintMode.NORMAL,
-                    null,
-                    null,
-                    true,
-                    new HashPrintRequestAttributeSet(),
-                    true,
-                    service*/);
+            app.getServerTable().print();
+            System.out.println(Thread.currentThread().getName());
         } catch (PrinterException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            System.out.println("ERROR");
+            logger.log(Level.WARNING, "打印机配置错误", e);
+            JOptionPane.showMessageDialog(app.getFrame(), "没有设置打印机或者打印机设置错误", "错误", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

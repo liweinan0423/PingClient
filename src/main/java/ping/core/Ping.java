@@ -10,6 +10,12 @@ public class Ping {
     public static final String OS_NAME_PROPERTY = "os.name";
 
     public boolean isReachable(String address) {
+//        try {
+//            return InetAddress.getByName(address).isReachable(3000);
+//        } catch (IOException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//            return false;
+//        }
         Runtime runtime = Runtime.getRuntime();
         if (address == null) {
             throw new IllegalArgumentException("Server address cannot be null");
