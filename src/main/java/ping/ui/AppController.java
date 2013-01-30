@@ -4,7 +4,9 @@ import ping.core.ServerRepository;
 import ping.ui.menu.PMenuBar;
 import ping.ui.statusbar.StatusBar;
 import ping.ui.table.ServerTable;
+import ping.ui.toolbar.AddButtonListener;
 import ping.ui.toolbar.PToolBar;
+import ping.ui.toolbar.RemoveButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +18,7 @@ public class AppController {
     private ServerTable serverTable;
     private StatusBar statusBar;
     private ServerRepository serverRepository;
+    private JFrame frame;
 
     public AppController(ServerRepository repository) {
         this.serverRepository = repository;
@@ -24,7 +27,11 @@ public class AppController {
     public void init() {
 
         menuBar = new PMenuBar();
+
         toolBar = new PToolBar();
+        toolBar.getAddButton().addActionListener(new AddButtonListener(this));
+        toolBar.getRemoveButton().addActionListener(new RemoveButtonListener(this));
+
         serverTable = new ServerTable(serverRepository);
         statusBar = new StatusBar();
 
@@ -36,7 +43,7 @@ public class AppController {
         container.add(BorderLayout.CENTER, new JScrollPane(serverTable));
         container.add(BorderLayout.SOUTH, statusBar);
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(menuBar);
 
@@ -45,5 +52,17 @@ public class AppController {
         frame.pack();
         frame.setVisible(true);
 
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public ServerRepository getServerRepository() {
+        return serverRepository;
+    }
+
+    public ServerTable getServerTable() {
+        return serverTable;
     }
 }

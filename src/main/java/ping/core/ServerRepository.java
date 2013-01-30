@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import ping.core.event.DataChangeEventListener;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,6 +40,11 @@ public class ServerRepository {
 
     private String dataFile;
 
+    private Vector<DataChangeEventListener> listeners = new Vector<DataChangeEventListener>();
+
+    public void addDataChangeEventListener(DataChangeEventListener listener) {
+        this.listeners.add(listener);
+    }
 
     public ServerRepository(String dataFile) {
         if (dataFile == null || "".equals(dataFile)) {
@@ -137,6 +144,14 @@ public class ServerRepository {
             throw new RuntimeException(e);
         }
 
+        for (DataChangeEventListener listener : listeners) {
+            try {
+                listener.onServerCreate(server);
+            } catch (RuntimeException e) {
+                //ignore
+            }
+        }
+
     }
 
     public List<Server> findAllServers() {
@@ -174,6 +189,14 @@ public class ServerRepository {
             writeDocument(document);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+
+        for (DataChangeEventListener listener : listeners) {
+            try {
+                listener.onServerRemove(server);
+            } catch (RuntimeException e) {
+                //ignore
+            }
         }
     }
 
@@ -216,6 +239,14 @@ public class ServerRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        for (DataChangeEventListener listener : listeners) {
+            try {
+                listener.onServerUpdate(server);
+            } catch (RuntimeException e) {
+                //ignore
+            }
+        }
     }
 
 
@@ -236,5 +267,9 @@ public class ServerRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void removeServerById(String serverId) {
+        removeServer(findById(serverId));
     }
 }
