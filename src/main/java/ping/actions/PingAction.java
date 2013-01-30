@@ -4,6 +4,7 @@ import ping.core.Server;
 import ping.ui.AppController;
 import ping.ui.table.ServerTableModel;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -12,9 +13,14 @@ public class PingAction implements ActionListener {
 
     private AppController app;
 
-    public PingAction(AppController app) {
+
+    private JButton button;
+
+    public PingAction(AppController app, JButton button) {
 
         this.app = app;
+        this.button = button;
+
     }
 
     @Override
@@ -22,7 +28,8 @@ public class PingAction implements ActionListener {
         ServerTableModel model = app.getServerTable().getServerTableModel();
         for (int i = 0; i < model.getRowCount(); i++) {
             Server server = ServerTableModel.extractServer((Vector) model.getDataVector().get(i));
-            new PingThread(server, model).start();
+            Thread thread = new PingThread(server, model);
+            thread.start();
         }
     }
 }

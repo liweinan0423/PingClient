@@ -25,6 +25,16 @@ public class Server {
 
     private int latency;
 
+    private boolean busy;
+
+    public boolean isBusy() {
+        return busy;
+    }
+
+    public void setBusy(boolean busy) {
+        this.busy = busy;
+    }
+
     public PingWorker getWorker() {
         return worker;
     }

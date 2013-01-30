@@ -2,6 +2,7 @@ package ping.ui.table;
 
 import ping.core.Server;
 import ping.core.ServerRepository;
+import ping.ui.AppController;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -11,9 +12,11 @@ public class ServerTableModel extends DefaultTableModel {
 
 
     private ServerRepository repository;
+    private final AppController app;
 
-    public ServerTableModel(ServerRepository repository) {
+    public ServerTableModel(ServerRepository repository, AppController app) {
         this.repository = repository;
+        this.app = app;
 
         List<Server> serverList = repository.findAllServers();
         Vector<String> columnNames = getColumnNamesVector();
@@ -29,7 +32,7 @@ public class ServerTableModel extends DefaultTableModel {
         this.setDataVector(data, columnNames);
 
 
-        this.addTableModelListener(new ServerTableModelListener());
+        this.addTableModelListener(new ServerTableModelListener(this.app));
     }
 
 

@@ -1,6 +1,7 @@
 package ping.ui.table;
 
 import ping.core.ServerRepository;
+import ping.ui.AppController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,10 +10,13 @@ import javax.swing.table.DefaultTableModel;
 public class ServerTable extends JTable {
 
 
-    public ServerTable(ServerRepository repository) {
+    private final AppController app;
+
+    public ServerTable(ServerRepository repository, AppController app) {
+        this.app = app;
 
 
-        DefaultTableModel tableModel = new ServerTableModel(repository);
+        DefaultTableModel tableModel = new ServerTableModel(repository, this.app);
 
         ServerDataListener listener = new ServerDataListener(tableModel);
         repository.addDataChangeEventListener(listener);

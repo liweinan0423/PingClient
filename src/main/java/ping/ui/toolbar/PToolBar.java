@@ -7,7 +7,7 @@ public class PToolBar extends JToolBar {
 
     private static final String ADD = "增加服务器";
     private static final String REMOVE = "删除";
-    private static final String START_PING = "开始Ping";
+    private static final String START_PING = "Ping!";
     private static final String PRINT = "打印";
 
     private JButton addButton;

@@ -33,10 +33,10 @@ public class AppController {
         toolBar = new PToolBar();
         toolBar.getAddButton().addActionListener(new AddAction(this));
         toolBar.getRemoveButton().addActionListener(new RemoveAction(this));
-        toolBar.getStartPingBtn().addActionListener(new PingAction(this));
+        toolBar.getStartPingBtn().addActionListener(new PingAction(this, toolBar.getStartPingBtn()));
         toolBar.getPrintButton().addActionListener(new PrintAction(this));
 
-        serverTable = new ServerTable(serverRepository);
+        serverTable = new ServerTable(serverRepository, this);
         statusBar = new StatusBar();
 
         Container container = new Container();

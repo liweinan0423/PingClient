@@ -39,6 +39,8 @@ public class CreateServerAction extends AbstractAction {
         Server server = new Server();
         server.setName(serverName);
         server.setAddress(serverAddress);
+        server.setLatency(Server.NO_LATENCY);
+        server.setStatus(Server.UNKNOWN);
         try {
             app.getServerRepository().saveServer(server);
             dialog.setVisible(false);
@@ -46,7 +48,6 @@ public class CreateServerAction extends AbstractAction {
         } catch (DuplicateServerDefinitionException e) {
             JOptionPane.showMessageDialog(panel, e.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
         }
-
 
     }
 }

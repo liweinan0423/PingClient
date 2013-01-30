@@ -140,7 +140,15 @@ public class ServerRepository {
 
             writeDocument(document);
 
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (TransformerException e) {
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -220,7 +228,10 @@ public class ServerRepository {
         return document;
     }
 
-    public void updateServer(Server server) {
+    public void updateServer(Server server) throws DuplicateServerDefinitionException {
+
+
+
         try {
             Document document = readDocument();
             NodeList nodeList = document.getElementsByTagName("server");
@@ -228,6 +239,11 @@ public class ServerRepository {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element element = (Element) nodeList.item(i);
                 if (element.getAttribute("id").equals(server.getId())) {
+
+                    if (!element.getAttribute("name").equals(server.getName()) && findByName(server.getName()) != null) {
+                        throw new DuplicateServerDefinitionException("服务器[" + server.getName() + "]已经存在");
+                    }
+
                     element.setAttribute("name", server.getName());
                     element.setAttribute("address", server.getAddress());
                     element.setAttribute("latency", String.valueOf(server.getLatency()));
@@ -236,7 +252,15 @@ public class ServerRepository {
             }
 
             writeDocument(document);
-        } catch (Exception e) {
+        } catch (TransformerException e) {
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 

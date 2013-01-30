@@ -17,6 +17,7 @@ public class PingThread extends Thread {
     @Override
     public void run() {
         synchronized (server) {
+
             Ping ping = new Ping();
 
 
