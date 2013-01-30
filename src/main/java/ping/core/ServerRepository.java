@@ -205,7 +205,7 @@ public class ServerRepository {
     }
 
 
-    private void writeDocument(Document document) throws TransformerException, FileNotFoundException {
+    private synchronized void writeDocument(Document document) throws TransformerException, FileNotFoundException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         Source source = new DOMSource(document);
@@ -213,7 +213,7 @@ public class ServerRepository {
         transformer.transform(source, result);
     }
 
-    private Document readDocument() throws ParserConfigurationException, IOException, SAXException {
+    private synchronized Document readDocument() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
         Document document = builder.parse(new File(dataFile));
