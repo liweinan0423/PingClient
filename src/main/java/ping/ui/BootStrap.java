@@ -2,7 +2,6 @@ package ping.ui;
 
 
 import ping.core.ServerRepository;
-import ping.ui.table.ServerDataListener;
 
 import javax.swing.*;
 
