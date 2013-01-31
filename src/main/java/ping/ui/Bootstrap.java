@@ -17,6 +17,7 @@ public class Bootstrap {
     }
 
     private static void createAndShowGUI() {
+        UIs.setUI();
         ServerRepository repository = new ServerRepository(System.getProperty("user.home") + "/servers.xml");
         AppController app = new AppController(repository);
         app.init();
