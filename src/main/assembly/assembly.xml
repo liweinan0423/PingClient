@@ -11,4 +11,9 @@
             <source>target/${artifactId}-${version}.jar</source>
         </file>
     </files>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/assembly/jre</directory>
+        </fileSet>
+    </fileSets>
 </assembly>
