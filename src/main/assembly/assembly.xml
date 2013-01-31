@@ -6,4 +6,9 @@
         <format>zip</format>
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
+    <files>
+        <file>
+            <source>target/${artifactId}-${version}.jar</source>
+        </file>
+    </files>
 </assembly>
