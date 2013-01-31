@@ -10,6 +10,9 @@
         <file>
             <source>target/${artifactId}-${version}.jar</source>
         </file>
+        <file>
+            <source>src/main/assembly/pingclient.exe</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>
