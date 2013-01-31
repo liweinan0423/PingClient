@@ -20,7 +20,8 @@ public class PingThread extends Thread {
 
             Ping ping = new Ping();
 
-
+            server.setStatus(Server.DETECTING);
+            model.update(server);
             long start = System.currentTimeMillis();
             boolean success = ping.isReachable(server.getAddress());
             long end = System.currentTimeMillis();

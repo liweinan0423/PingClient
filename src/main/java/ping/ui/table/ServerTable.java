@@ -28,6 +28,7 @@ public class ServerTable extends JTable {
         this.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         this.getColumnModel().getColumn(4).setCellRenderer(new ServerStatusCellRenderer());
+        this.getColumnModel().getColumn(3).setCellRenderer(new ServerLatencyCellRenderer());
 
     }
 

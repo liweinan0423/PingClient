@@ -45,13 +45,11 @@ public class AppController {
 
         //put JTable into a JScrollPane to show the headers of the table;
         container.add(BorderLayout.CENTER, new JScrollPane(serverTable));
-        container.add(BorderLayout.SOUTH, statusBar);
+//        container.add(BorderLayout.SOUTH, statusBar);
 
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setJMenuBar(menuBar);
-
-        frame.setJMenuBar(menuBar);
+//        frame.setJMenuBar(menuBar);
         frame.setContentPane(container);
         frame.pack();
         frame.setVisible(true);

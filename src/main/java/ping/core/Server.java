@@ -11,6 +11,9 @@ public class Server {
     public static final int UNKNOWN = 3;
     public static final String UNKOWN_TEXT = "未知";
 
+    public static final int DETECTING = 4;
+    public static final String DETECTING_TEXT = "正在检测...";
+
     public static final int NO_LATENCY = -1;
 
     private String id;
@@ -24,16 +27,6 @@ public class Server {
     private PingWorker worker = new PingWorker(this);
 
     private int latency;
-
-    private boolean busy;
-
-    public boolean isBusy() {
-        return busy;
-    }
-
-    public void setBusy(boolean busy) {
-        this.busy = busy;
-    }
 
     public PingWorker getWorker() {
         return worker;

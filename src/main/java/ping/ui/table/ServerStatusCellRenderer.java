@@ -9,8 +9,14 @@ import java.awt.*;
 public class ServerStatusCellRenderer implements TableCellRenderer {
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        String text = "";
+    public Component getTableCellRendererComponent(
+            JTable table,
+            Object value,
+            boolean isSelected,
+            boolean hasFocus,
+            int row,
+            int column) {
+        String text;
 
         int intVal = Integer.parseInt(value.toString());
 
@@ -23,6 +29,9 @@ public class ServerStatusCellRenderer implements TableCellRenderer {
                 break;
             case Server.UNKNOWN:
                 text = Server.UNKOWN_TEXT;
+                break;
+            case Server.DETECTING:
+                text = Server.DETECTING_TEXT;
                 break;
             default:
                 text = Server.UNKOWN_TEXT;
